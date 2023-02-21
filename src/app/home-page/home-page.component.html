@@ -1,0 +1,7 @@
+<form (ngSubmit)="sendData(homePageForm.value)" #homePageForm="ngForm" >
+<input type="number" name="homePageNumbber" ngModel #homePageNumbber="ngModel" required placeholder="Enter Number">
+<br>
+<br>
+<button type="submit" [disabled]="!homePageNumbber.valid" class="btn btn-primary" routerLink="/app-template-driven-form/{{homePageNumbber.value}}" >submit</button>
+<router-outlet></router-outlet>
+</form>

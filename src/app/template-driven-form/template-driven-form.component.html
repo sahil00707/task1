@@ -1,0 +1,89 @@
+<div class="container">
+    <h4 class="text-success">Template Driven Form</h4>
+<form #templateDrivenForm="ngForm" (ngSubmit)="sendData(templateDrivenForm.value)">
+    <div class="3boxes">
+        <input type="text" [(ngModel)]="this.d.fName" name="fName" placeholder="First Name" #fName="ngModel" required>
+        <input type="text" [(ngModel)]="this.d.mName" name="mName" placeholder="Middle Name" #mName="ngModel" required>
+        <input type="text"[(ngModel)]="this.d.lName"  name="lName" placeholder="Last Name" #lName="ngModel" required>
+    </div>
+    <br>
+    <textarea name="textArea" disabled cols="30" rows="10"
+      #textArea="ngModel" [(ngModel)]="this.d.fName+this.d.mName+this.d.lName" required></textarea>
+
+    <br>
+    <br>
+    <h4 class="text-success">Enter Your Age</h4>
+    <input type="number" name="age"  #age="ngModel" [(ngModel)]="this.d.age"  placeholder="Age" required>
+    <div class="gender_btns">
+        <h4 class="text-success">Select Your Gender</h4>
+        <label for="male">
+
+            <input type="radio"#gender="ngModel" [(ngModel)]="this.d.gender" required  name="gender" value="Male" id="male">
+            Male
+        </label>
+        <br>
+        <label for="female">
+
+            <input type="radio" #gender="ngModel"  [(ngModel)]="this.d.gender" required name="gender" value="Female" id="female">
+            Female
+        </label>
+        <br>
+        <label for="not_to_say">
+
+            <input type="radio" #gender="ngModel"  [(ngModel)]="this.d.gender" required name="gender" value="Prefer Not To say" id="not_to_say">
+            Prefer Not to say
+        </label>
+
+    </div>
+    <div class="hobbies">
+        <h4 class="text-success">Select Your Hobbies</h4>
+        <label for="hobby1">
+            <input  #hobby="ngModel" name="hobbies1" value="Music"  [(ngModel)]="this.d.hobby"  id="hobby1" type="checkbox">
+            Music
+        </label>
+        <br>
+        <label for="hobby2">
+            <input #hobby="ngModel" name="hobbies2" value="Singing" [(ngModel)]="this.d.hobby"  id="hobby2" type="checkbox">
+            Singing
+        </label>
+        <br>
+        <label for="hobby3">
+            <input  #hobby="ngModel" name="hobbies3" value="Dance" [(ngModel)]="this.d.hobby"  id="hobby3" type="checkbox">
+            Dance
+        </label>
+        <br>
+        <label for="hobby4">
+            <input  #hobby="ngModel" name="hobbies4"value="Reading" [(ngModel)]="this.d.hobby"  id="hobby4" type="checkbox">
+            Reading
+        </label>
+        <br>
+        <label for="hobby5">
+            <input  #hobby="ngModel" name="hobbies5" value="Cricket" [(ngModel)]="this.d.hobby"  id="hobby5" type="checkbox">
+            Cricket
+        </label>
+        <br>
+    </div>
+<div class="company_list">
+    <h4 class="text-success">Select Company</h4>
+    <select name="company_list" #company="ngModel" [(ngModel)]="this.d.company"  name="company" required>
+        <option selected value="Techextensor">Techextensor</option>
+        <option value="Google">Google</option>
+        <option value="Meta">Meta</option>
+        <option value="OpenAi">OpenAi</option>
+        <option value="Jio">Jio</option>
+        <option value="Adani">Adani</option>
+        <option value="Synzeal">Synzeal Pvt Ltd</option>
+        <option value="Other">Other</option>
+    </select>
+</div>
+
+<br>
+
+<div class="3btns">
+    <button class="btn btn-primary" routerLink="/app-home-page">Back</button>
+    <button class="btn btn-danger" (click)="templateDrivenForm.resetForm()">Reset</button>
+    <button class="btn btn-success" type="submit" [disabled]="!templateDrivenForm.valid">Submit</button>
+   
+</div>
+</form>
+</div>
