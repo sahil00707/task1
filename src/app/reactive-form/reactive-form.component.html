@@ -4,13 +4,16 @@
     <br>
     
     <div class="3boxes">
-        <input type="text"  name="fName" placeholder="First Name"  formControlName="fName" required>
-        <input type="text"  name="mName" placeholder="Middle Name" formControlName="mName" required>
-        <input type="text" formControlName="lName" name="lName" placeholder="Last Name"  required>
+        <input type="text" #fName name="fName" placeholder="First Name"  formControlName="fName" required > 
+     
+        <br>
+        <br>
+        <input type="text" #mName name="mName" placeholder="Middle Name" formControlName="mName" required >
+        <input type="text" #lName formControlName="lName" name="lName" placeholder="Last Name"  required >
     </div>
     <br>
    
-    <textarea name="textArea" readonly formControlName="textArea" rows="10" cols="30" required></textarea>
+    <textarea name="textArea"   rows="10" cols="30" required>{{fName.value+mName.value+ lName.value}}</textarea>
 
     <br>
     <br>
@@ -81,7 +84,7 @@
 </div>
 <br>
 <div class="3btns">
-    <button  class="btn btn-primary">Back</button>
+    <button  class="btn btn-primary" routerLink="/app-template-driven-form/{{this.sendDataId}}">Back</button>
     <button  class="btn btn-danger" (click)="this.reactiveForm.reset()">Reset</button>
     <button  class="btn btn-success" [disabled]="!reactiveForm.valid">Submit</button>
 </div>

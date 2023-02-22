@@ -1,19 +1,27 @@
 <div class="container">
     <h4 class="text-success">Template Driven Form</h4>
 <form #templateDrivenForm="ngForm" (ngSubmit)="sendData(templateDrivenForm.value)">
-    <div class="3boxes">
-        <input type="text" [(ngModel)]="this.d.fName" name="fName" placeholder="First Name" #fName="ngModel" required>
-        <input type="text" [(ngModel)]="this.d.mName" name="mName" placeholder="Middle Name" #mName="ngModel" required>
-        <input type="text"[(ngModel)]="this.d.lName"  name="lName" placeholder="Last Name" #lName="ngModel" required>
-    </div>
+ 
+        <input type="text" [(ngModel)]="this.d.fName" name="fName"   pattern="[a-zA-Z ]*" placeholder="First Name" #fName="ngModel" required> 
+        <p *ngIf="!fName.valid&&fName.touched" class="text-danger">Enter Valid First Name</p>
+        <br><br>
+        <input type="text" [(ngModel)]="this.d.mName"pattern="[a-zA-Z ]*" name="mName" placeholder="Middle Name" #mName="ngModel" required>
+        <p *ngIf="!mName.valid&&mName.touched" class="text-danger">Enter Valid Middle Name</p>
+
+        <br><br>
+        <input type="text"[(ngModel)]="this.d.lName" pattern="[a-zA-Z ]*" name="lName" placeholder="Last Name" #lName="ngModel" required>
+        <p *ngIf="!lName.valid&&lName.touched" class="text-danger">Enter Valid Last Name</p>
+
+        <br><br>
+    
     <br>
-    <textarea name="textArea" disabled cols="30" rows="10"
-      #textArea="ngModel" [(ngModel)]="this.d.fName+this.d.mName+this.d.lName" required></textarea>
+   <textarea name="textArea" #textarea="ngModel" disabled="true" [ngModel]="fName.value + mName.value + lName.value " cols="30" rows="10"></textarea>
 
     <br>
     <br>
-    <h4 class="text-success">Enter Your Age</h4>
-    <input type="number" name="age"  #age="ngModel" [(ngModel)]="this.d.age"  placeholder="Age" required>
+    <h4 class="text-success" >Enter Your Age</h4>
+    <input type="number" name="age"  #age="ngModel" [(ngModel)]="this.d.age"  max="100" placeholder="Age" required>
+    <p *ngIf="!age.valid&&age.touched" class="text-danger">Enter Valid Age</p>
     <div class="gender_btns">
         <h4 class="text-success">Select Your Gender</h4>
         <label for="male">
@@ -33,40 +41,42 @@
             <input type="radio" #gender="ngModel"  [(ngModel)]="this.d.gender" required name="gender" value="Prefer Not To say" id="not_to_say">
             Prefer Not to say
         </label>
+        <p *ngIf="!gender.valid" class="text-danger">Please Select Your Gender</p>
 
     </div>
     <div class="hobbies">
         <h4 class="text-success">Select Your Hobbies</h4>
         <label for="hobby1">
-            <input  #hobby="ngModel" name="hobbies1" value="Music"  [(ngModel)]="this.d.hobby"  id="hobby1" type="checkbox">
+            <input  #hobby1="ngModel" name="hobby1" value="Music"  [(ngModel)]="this.d.hobby1"  id="hobby1" type="checkbox">
             Music
         </label>
         <br>
         <label for="hobby2">
-            <input #hobby="ngModel" name="hobbies2" value="Singing" [(ngModel)]="this.d.hobby"  id="hobby2" type="checkbox">
+            <input #hobby2="ngModel" name="hobby2" value="Singing" [(ngModel)]="this.d.hobby2"  id="hobby2" type="checkbox">
             Singing
         </label>
         <br>
         <label for="hobby3">
-            <input  #hobby="ngModel" name="hobbies3" value="Dance" [(ngModel)]="this.d.hobby"  id="hobby3" type="checkbox">
+            <input  #hobby3="ngModel" name="hobby3" value="Dance" [(ngModel)]="this.d.hobby3"  id="hobby3" type="checkbox">
             Dance
         </label>
         <br>
         <label for="hobby4">
-            <input  #hobby="ngModel" name="hobbies4"value="Reading" [(ngModel)]="this.d.hobby"  id="hobby4" type="checkbox">
+            <input  #hobby4="ngModel" name="hobby4"value="Reading" [(ngModel)]="this.d.hobby4"  id="hobby4" type="checkbox">
             Reading
         </label>
         <br>
         <label for="hobby5">
-            <input  #hobby="ngModel" name="hobbies5" value="Cricket" [(ngModel)]="this.d.hobby"  id="hobby5" type="checkbox">
+            <input  #hobby5="ngModel" name="hobby5" value="Cricket" [(ngModel)]="this.d.hobby5"  id="hobby5" type="checkbox">
             Cricket
         </label>
         <br>
+        
     </div>
 <div class="company_list">
     <h4 class="text-success">Select Company</h4>
     <select name="company_list" #company="ngModel" [(ngModel)]="this.d.company"  name="company" required>
-        <option selected value="Techextensor">Techextensor</option>
+        <option  value="Techextensor">Techextensor</option>
         <option value="Google">Google</option>
         <option value="Meta">Meta</option>
         <option value="OpenAi">OpenAi</option>
@@ -75,12 +85,14 @@
         <option value="Synzeal">Synzeal Pvt Ltd</option>
         <option value="Other">Other</option>
     </select>
+    <p *ngIf="!company.valid" class="text-danger">Please Select company</p>
+
 </div>
 
 <br>
 
 <div class="3btns">
-    <button class="btn btn-primary" routerLink="/app-home-page">Back</button>
+    <button class="btn btn-primary" routerLink="/">Back</button>
     <button class="btn btn-danger" (click)="templateDrivenForm.resetForm()">Reset</button>
     <button class="btn btn-success" type="submit" [disabled]="!templateDrivenForm.valid">Submit</button>
    
