@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { FormControl,FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl,FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {MyDataService} from '../services/my-data.service';
 
@@ -14,6 +14,10 @@ export class ReactiveFormComponent implements OnInit  {
   d:any;
   sendDataId:any;
   reactiveForm:any;
+  //userForm: FormGroup<{ first_name: FormControl<string | null>; }>;
+  fName:any='';
+  mName:any='';
+  lName:any='';
 
   ngOnInit(): void {
     //fetching id from 1st page
@@ -42,7 +46,16 @@ export class ReactiveFormComponent implements OnInit  {
     }); 
   }
 
-  constructor(private route:ActivatedRoute,private router:Router){}
+  fetchData(){
+    
+  }
+  constructor(private route:ActivatedRoute,private router:Router,private fb: FormBuilder){
+    this.reactiveForm = this.fb.group({
+      fName: '',
+      mName: '',
+      lName: '',
+    });
+  }
 
   //to send data to the local storage
      setData(){
@@ -50,5 +63,10 @@ export class ReactiveFormComponent implements OnInit  {
       this.router.navigate(['/'])
      // console.log(localStorage.getItem(  JSON.parse(this.sendDataId)));
     } ;
+    setValue() {
+      this.fName=this.reactiveForm.get('fName')?.value; // input value retrieved
+      this.mName=this.reactiveForm.get('mName')?.value; // input value retrieved
+      this.lName=this.reactiveForm.get('lName')?.value; // input value retrieved
+    }
  
 }

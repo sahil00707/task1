@@ -15,7 +15,7 @@
         <br><br>
     
     <br>
-   <textarea name="textArea" #textarea="ngModel" disabled="true" [ngModel]="fName.value + mName.value + lName.value " cols="30" rows="10"></textarea>
+   <textarea name="textArea" #textarea="ngModel" disabled="true" [ngModel]="(fName.value||'') + (mName.value||'') + (lName.value||'') " cols="30" rows="10"></textarea>
 
     <br>
     <br>
